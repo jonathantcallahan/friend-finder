@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-const PORT = 8080;
+const PORT = process.env.PORT || process.argv[2] || 80;
 
 const server = http.createServer(handleRequest);
 
@@ -31,7 +31,7 @@ server.listen(PORT, () => {
 })
 
 function servePage(res, filepath){
-    fs.readdir(__dirname + filepath, function(err, data){
+    fs.readFile(__dirname + filepath, function(err, data){
         if(err) throw err;
         res.writeHead(200, {'Content-Type':'text/html'});
         res.end(data)
