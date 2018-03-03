@@ -17,12 +17,19 @@ function handleRequest(req, res){
             break;
         default:
             servePage(res, '/home.html');
+            break;
+        case '/surveyData':
+            handlePost(req);
     };
-    var responseStr = '';
-    req.on('data', data => {
-        responseStr += data;
-        console.log(responseStr)
-    })
+    
+    function handlePost(req){
+        var responseStr = '';
+        req.on('data', data => {
+            responseStr += data;
+            console.log(responseStr)
+        })
+    }
+    
 
 }
 
