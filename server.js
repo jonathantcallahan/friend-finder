@@ -19,15 +19,16 @@ function handleRequest(req, res){
             servePage(res, '/home.html');
             break;
         case '/surveyData':
-            handlePost(req);
+            handlePost(req, res);
     };
     
-    function handlePost(req){
+    function handlePost(req, res){
         var responseStr = '';
         req.on('data', data => {
             responseStr += data;
             console.log(responseStr)
-        })
+        });
+        res.end('Data Recieved: ' + responseStr)
     }
     
 
