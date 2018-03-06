@@ -13,10 +13,10 @@ function handleRequest(req, res){
         //exist.
         //Going to move them to the top of the hierarchy 
         //temporarily.
-            servePage(res, '/survey.html');
+            servePage(res, '/app/public/survey.html');
             break;
         default:
-            servePage(res, '/home.html');
+            servePage(res, '/app/public/home.html');
             break;
         case '/surveyData':
             handlePost(req, res);
@@ -39,6 +39,7 @@ server.listen(PORT, () => {
 })
 
 function servePage(res, filepath){
+    console.log(__dirname + filepath);
     fs.readFile(__dirname + filepath, function(err, data){
         if(err) throw err;
         res.writeHead(200, {'Content-Type':'text/html'});
