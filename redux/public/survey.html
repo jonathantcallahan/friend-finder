@@ -8,8 +8,41 @@
         <h1>This is the survey page</h1>
         <form>
             <input type='text' id='name' placeholder="Enter your name"><br>
+            <input type="text" id='image' placeholder="Please enter a link to your image"><br>
             <h3>How much do you like spicy food?</h3>
             <select id='spicy' name='Spicy food'>
+                <option value='1'>1</option>
+                <option value="2">2</option>
+                <option value='3'>3</option>
+                <option value='4'>3</option>
+                <option value='5'>5</option>
+            </select>
+            <h3>How much do you like playing sports?</h3>
+            <select id='sports'>
+                <option value='1'>1</option>
+                <option value="2">2</option>
+                <option value='3'>3</option>
+                <option value='4'>3</option>
+                <option value='5'>5</option>
+            </select>
+            <h3>Do you like going to the movies?</h3>
+            <select id='movies'>
+                <option value='1'>1</option>
+                <option value="2">2</option>
+                <option value='3'>3</option>
+                <option value='4'>3</option>
+                <option value='5'>5</option>
+            </select>
+            <h3>Do you read a lot?</h3>
+            <select id='read'>
+                <option value='1'>1</option>
+                <option value="2">2</option>
+                <option value='3'>3</option>
+                <option value='4'>3</option>
+                <option value='5'>5</option>
+            </select>
+            <h3>Do you like pets</h3>
+            <select id='pets'>
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
@@ -20,14 +53,23 @@
         </form>
     </body>
     <script>
+        var url = window.location.origin
         $('#button').click((event)=>{
             event.preventDefault();
             var answers = {
                 name: $("#name").val().trim(),
+                image: $("#image").val().trim(),
                 spicy: $("#spicy").val().trim(),
+                sports: $("#sports").val().trim(),
+                movies: $("#movies").val().trim(),
+                read: $("#read").val().trim(),
+                pets: $("#pets").val().trim()
             }
             $.post('/api-post', answers)
             .then((data)=>console.log(data))
+            $.ajax({url: url + "/api", method: "GET"}).done((response)=>{
+                console.log(response)
+            })
         });
 
     </script>
