@@ -1,7 +1,8 @@
 var data = [
-    {
-        name: 'bro',
-        spicy: '4'
+    { 
+        name: 'asdf',
+        image: 'asdf',
+        scores: [ '1', '1', '1', '1', '1' ] 
     }
 ]
 

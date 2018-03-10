@@ -14,7 +14,7 @@
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
-                <option value='4'>3</option>
+                <option value='4'>4</option>
                 <option value='5'>5</option>
             </select>
             <h3>How much do you like playing sports?</h3>
@@ -22,7 +22,7 @@
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
-                <option value='4'>3</option>
+                <option value='4'>4</option>
                 <option value='5'>5</option>
             </select>
             <h3>Do you like going to the movies?</h3>
@@ -30,7 +30,7 @@
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
-                <option value='4'>3</option>
+                <option value='4'>4</option>
                 <option value='5'>5</option>
             </select>
             <h3>Do you read a lot?</h3>
@@ -38,7 +38,7 @@
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
-                <option value='4'>3</option>
+                <option value='4'>4</option>
                 <option value='5'>5</option>
             </select>
             <h3>Do you like pets</h3>
@@ -46,7 +46,7 @@
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
-                <option value='4'>3</option>
+                <option value='4'>4</option>
                 <option value='5'>5</option>
             </select>
             <input id='button' type='submit'></input>
@@ -54,21 +54,53 @@
     </body>
     <script>
         var url = window.location.origin
+        var current;
         $('#button').click((event)=>{
             event.preventDefault();
             var answers = {
                 name: $("#name").val().trim(),
                 image: $("#image").val().trim(),
-                spicy: $("#spicy").val().trim(),
-                sports: $("#sports").val().trim(),
-                movies: $("#movies").val().trim(),
-                read: $("#read").val().trim(),
-                pets: $("#pets").val().trim()
-            }
+                scores: [
+                    $('#spicy').val(),
+                    $('#sports').val(),
+                    $('#movies').val(),
+                    $('#read').val(),
+                    $('#pets').val()
+                ]
+                // spicy: $("#spicy").val().trim(),
+                // sports: $("#sports").val().trim(),
+                // movies: $("#movies").val().trim(),
+                // read: $("#read").val().trim(),
+                // pets: $("#pets").val().trim()
+            };
             $.post('/api-post', answers)
             .then((data)=>console.log(data))
             $.ajax({url: url + "/api", method: "GET"}).done((response)=>{
-                console.log(response)
+                console.log(response, answers.scores)
+            function friendMatch(){
+                var topFriend = 100;
+                var friendName = [];
+                var current = answers.scores;
+                console.log(current)
+                var curScore = 0;
+                for(var p = 0; p <response.length - 1; p++){
+                    for(var i = 0; i<response[i].scores.length; i++){
+                        console.log('loop ran', response[p].scores[i])
+                        if(response[p].scores[i]>answers.scores[i]){
+                            curScore += response[p].scores[i] - answers.scores[i]
+                        } else {
+                            curScore += answers.scores[i] - response[p].scores[i]
+                        }
+                    }
+                    if(curScore<topFriend){
+                        friendName = [response[p].name,response[p].image];
+                        topFriend = curScore;
+                    }
+                    curScore = 0;
+                }
+                console.log(friendName)
+            }
+            friendMatch()
             })
         });
 
