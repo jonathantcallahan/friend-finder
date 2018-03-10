@@ -3,6 +3,21 @@
     <head>
         <title>FriendFinder - Survery Page</title>
         <script src="https://code.jquery.com/jquery.js"></script>
+        <style>
+            #modal-container {
+                display: none;
+                position: fixed;
+                z-index: 2;
+                width: 50%;
+                height: 50%;
+                left: 25%;
+                bottom: 25%;
+                border: black 2px solid;
+                background-color: lightslategray;
+            }
+
+
+        </style>
     </head>
     <body>
         <h1>This is the survey page</h1>
@@ -10,7 +25,7 @@
             <input type='text' id='name' placeholder="Enter your name"><br>
             <input type="text" id='image' placeholder="Please enter a link to your image"><br>
             <h3>How much do you like spicy food?</h3>
-            <select id='spicy' name='Spicy food'>
+            <select id='spicy'>
                 <option value='1'>1</option>
                 <option value="2">2</option>
                 <option value='3'>3</option>
@@ -51,6 +66,12 @@
             </select>
             <input id='button' type='submit'></input>
         </form>
+        <div id='modal-container'>
+            <div id='modal-content'>
+                <p id='test'></p>
+                <img id='profile-image' src="" height="100">
+            </div>
+        </div>
     </body>
     <script>
         var url = window.location.origin
@@ -83,8 +104,12 @@
                 var current = answers.scores;
                 console.log(current)
                 var curScore = 0;
+                if(response.length<2){
+                    alert('Not enough data in the system :/ Please try again')
+                    return;
+                }
                 for(var p = 0; p <response.length - 1; p++){
-                    for(var i = 0; i<response[i].scores.length; i++){
+                    for(var i = 0; i<response[p].scores.length; i++){
                         console.log('loop ran', response[p].scores[i])
                         if(response[p].scores[i]>answers.scores[i]){
                             curScore += response[p].scores[i] - answers.scores[i]
@@ -94,11 +119,20 @@
                     }
                     if(curScore<topFriend){
                         friendName = [response[p].name,response[p].image];
+                        console.log(response[p].image)
+                        console.log(response[p])
                         topFriend = curScore;
                     }
+                    console.log(`current score is ${curScore}`)
                     curScore = 0;
                 }
+                console.log('Jeb!')
                 console.log(friendName)
+                $('#profile-image').attr('src',friendName[1])
+                $('#test').text(friendName[0])
+                var test = $('#name').val()
+                console.log(test)
+                $('#modal-container').css('display','block')
             }
             friendMatch()
             })
