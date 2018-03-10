@@ -6,6 +6,10 @@
         <style>
             * {
                 font-family: arial;
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                background-color: thistle;
             }
 
             #modal-container {
@@ -13,71 +17,140 @@
                 position: fixed;
                 z-index: 2;
                 width: 50%;
-                height: 50%;
+                height: 45%;
                 left: 25%;
                 bottom: 25%;
-                border: black 2px solid;
-                background-color: lightslategray;
+                box-shadow: 2px 2px 2px gray;
+                background-color: whitesmoke;
             }
             #modal-content {
-                margin: 15%;
+                margin: 10%;
                 text-align: center;
+                background-color: whitesmoke;
             }
-
+            #profile-image {
+                padding: 20px;
+            }
+            select {
+                border: 0 !important;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Arrow_bottom.png') no-repeat;
+            }
+            #q-container {
+                background-color: thistle;
+                height: 40px;
+                padding:10px;
+                width: auto;
+            }
+            body {
+                margin-left: 15px;
+            }
+            ::placeholder {
+                color: white;
+                font-weight: 600;
+            }
+            input {
+                border: none;
+                border-bottom: white 2px solid;
+                color: white;
+                padding: 3px;
+                margin-right: 5px;
+                background-color: transparent;
+            }
+            
+            
+            span {
+                background-color: whitesmoke;
+                color:thistle;
+            }
+            h3 {
+                margin-top: 15px;
+            }
+            #button-style {
+                background-color: tomato;
+                border-radius: 4px;
+                width: 70px;
+                padding: 3px;
+                height: 39px;
+                text-align: center;
+                margin-left: 15px;
+            }
+            .dropdown {
+                color: white;
+            }
+            #button-style:hover {
+                box-shadow: 0px 1px 2px gray;
+            }
+            #rest-q {
+                background-color: thistle;
+                color: white;
+                padding: 5px 0px 15px 15px;
+            }
+            h1 {
+                margin: 5px 0px 0px 15px;
+                color: white;
+            }
 
         </style>
     </head>
     <body>
         <h1>This is the survey page</h1>
         <form>
-            <input type='text' id='name' placeholder="Enter your name"><br>
-            <input type="text" id='image' placeholder="Please enter a link to your image"><br>
-            <h3>How much do you like spicy food?</h3>
-            <select id='spicy'>
-                <option value='1'>1</option>
-                <option value="2">2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-            </select>
-            <h3>How much do you like playing sports?</h3>
-            <select id='sports'>
-                <option value='1'>1</option>
-                <option value="2">2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-            </select>
-            <h3>Do you like going to the movies?</h3>
-            <select id='movies'>
-                <option value='1'>1</option>
-                <option value="2">2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-            </select>
-            <h3>Do you read a lot?</h3>
-            <select id='read'>
-                <option value='1'>1</option>
-                <option value="2">2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-            </select>
-            <h3>Do you like pets</h3>
-            <select id='pets'>
-                <option value='1'>1</option>
-                <option value="2">2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-            </select>
-            <input id='button' type='submit'></input>
+            <div id='q-container'>
+                <input type='text' id='name' placeholder="Enter your name">
+                <input type="text" id='image' placeholder="Please enter a link to your image"><br>
+            </div>
+                <div id='rest-q'>
+                <h3>How much do you like spicy food?</h3>
+                <select class='dropdown' id='spicy'>
+                    <option value='1'>Not at all</option>
+                    <option value="2">A little bit</option>
+                    <option value='3'>Some</option>
+                    <option value='4'>A lot</option>
+                    <option value='5'>All the time</option>
+                </select>
+                <h3>How much do you like playing sports?</h3>
+                <select class='dropdown' id='sports'>
+                    <option value='1'>Not at all</option>
+                    <option value="2">A little bit</option>
+                    <option value='3'>Some</option>
+                    <option value='4'>A lot</option>
+                    <option value='5'>All the time</option>
+                </select>
+                <h3>Do you like going to the movies?</h3>
+                <select class='dropdown' id='movies'>
+                    <option value='1'>Not at all</option>
+                    <option value="2">A little bit</option>
+                    <option value='3'>Some</option>
+                    <option value='4'>A lot</option>
+                    <option value='5'>All the time</option>
+                </select>
+                <h3>Do you read a lot?</h3>
+                <select class='dropdown' id='read'>
+                    <option value='1'>Not at all</option>
+                    <option value="2">A little bit</option>
+                    <option value='3'>Some</option>
+                    <option value='4'>A lot</option>
+                    <option value='5'>All the time</option>
+                </select>
+                <h3>Do you like pets</h3>
+                <select class='dropdown' id='pets'>
+                    <option value='1'>Not at all</option>
+                    <option value="2">A little bit</option>
+                    <option value='3'>Some</option>
+                    <option value='4'>A lot</option>
+                    <option value='5'>All the time</option>
+                </select>
+            </div>
+            <div id='button-style'>
+                <input id='button' type='submit'></input>
+            </div>
         </form>
         <div id='modal-container'>
             <div id='modal-content'>
                 <span>Your Match is <span id='test'></span></span>
-                <img id='profile-image' src="" height="100">
+                <img id='profile-image' src="" height="200">
             </div>
         </div>
     </body>
