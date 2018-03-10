@@ -4,6 +4,10 @@
         <title>FriendFinder - Survery Page</title>
         <script src="https://code.jquery.com/jquery.js"></script>
         <style>
+            * {
+                font-family: arial;
+            }
+
             #modal-container {
                 display: none;
                 position: fixed;
@@ -14,6 +18,10 @@
                 bottom: 25%;
                 border: black 2px solid;
                 background-color: lightslategray;
+            }
+            #modal-content {
+                margin: 15%;
+                text-align: center;
             }
 
 
@@ -68,7 +76,7 @@
         </form>
         <div id='modal-container'>
             <div id='modal-content'>
-                <p id='test'></p>
+                <span>Your Match is <span id='test'></span></span>
                 <img id='profile-image' src="" height="100">
             </div>
         </div>
